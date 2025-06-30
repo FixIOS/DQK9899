@@ -36,15 +36,6 @@ const yeuthichdata = [
 
     },
     {
-        "title": "Soul Knight",
-        "version": "7.2.0.",
-        "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b8/6c/54/b86c5496-4dba-f117-8bb8-a8943cb7ddd5/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/100x100bb.jpg",
-        "description": "✅ Vô hạn kim cương\n✅ Vô hạn cá\n✅ Vô hạn năng lượng\n✅ Bất tử\n✅ One hit\n✅ Không thời gian hồi chiêu\n✅ Tăng tốc bắn",
-        "download_url": "https://drive.google.com/file/d/1xLQDi9tEFDVYFIF3thcwlH_bfHG5bBI0",
-        "updated_at": "2025-05-01",
-        "size": "502.87 MB",
-    },
-    {
         "title": "CarX Street",
         "version": "1.11.0",
         "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/98/46/92/98469264-32f1-ce97-8c26-0963c092db4e/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/350x350bb.jpg",
