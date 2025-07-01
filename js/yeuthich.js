@@ -58,7 +58,7 @@ const yeuthichdata = [
         "version": "2.16.1.",
         "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d8/cb/26/d8cb2615-6083-9d67-449c-9620f5aa0d8f/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/434x0w.webp",
         "description": "✅Lọc bóng theo ID cá \n✅Tự động câu cá \n✅Tự động bắt côn trùng \n✅Tự động bảo quản \n✅Tự động sửa chữa công cụ \n✅Tự động nhặt vật phẩm \n✅Tự động đào kho báu \n✅Tự động nhận phần thưởng\n✅ Đào kho báu nhanh chóng\n✅ Cá cắn mà không cần nhả lưỡi câu\n✅ Bóng câu cá 6 nhanh chóng\n✅ Cho phép trò chuyện từ người bị cấm\n✅Còn nhiều chức năng khác trong Menu.",
-        "download_url": "https://www.yeumoney.com/",
+        "download_url": "https://yeumoney.com/4spvIxs",
         "updated_at": "2025-6-30",
         "size": "1.3 GB",
     }
