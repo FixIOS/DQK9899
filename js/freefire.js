@@ -9,4 +9,14 @@ const freefiredata = [
         "updated_at": "2025-6-14",
         "size": "... MB "
     },
+        {
+        "title": "FreeFire Max",
+        "image": "https://play-lh.googleusercontent.com/Odw8BGugaJLdbaSbCeZWbTE3Qz1wTiQ0Tsn9nzpoQdnkzWb-gaI58zzTmYDvGpdYKg=w480-h960",
+        "image-demo": "https://i.imgur.com/w76PcsQ.jpeg",
+        "description": "✅ESP ",
+        "download_url": "https://yeumoney.com/wVmOzO",
+        "version": "1.111.1",
+        "updated_at": "2025-6-14",
+        "size": "... MB "
+    },
 ];
