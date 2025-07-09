@@ -16,7 +16,6 @@
     <!-- CÁC FILE CSS GỐC -->
     <link media="all" type="text/css" rel="stylesheet" href="css/swiper.min.css">
     <link media="all" type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- <link media="all" type="text/css" rel="stylesheet" href="css/app.css"> --> <!-- Tạm thời vô hiệu hóa file này để tùy chỉnh giao diện mới -->
 
     <!-- CÁC THƯ VIỆN BỔ SUNG -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -24,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- === PHẦN CSS TÙY CHỈNH GIAO DIỆN DARK MODE & LÀM ĐẸP === -->
+    <!-- === PHẦN CSS TÙY CHỈNH === -->
     <style>
         :root {
             --background-dark: #121212;
@@ -33,6 +32,8 @@
             --text-light: #e0e0e0;
             --text-dark: #b3b3b3;
             --border-color: #333;
+            --modal-bg: #2a2a30;
+            --lime-green: #cfff04;
         }
 
         /* --- CÀI ĐẶT TỔNG THỂ & DARK MODE --- */
@@ -45,7 +46,7 @@
         }
         
         #app {
-            padding-bottom: 80px; /* Thêm khoảng trống cho footer */
+            padding-bottom: 80px; /* Chừa không gian cho thanh công cụ và copyright */
         }
 
         #content {
@@ -62,251 +63,153 @@
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
-
-        #header h1 {
-            color: var(--primary-color);
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
-        }
-
-        #header p {
-            color: var(--text-dark);
-        }
-
-        .btn {
-            font-weight: 500;
-            font-size: 1rem;
-            padding: 12px;
-            border-radius: 12px;
-            border: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        }
-        
-        .group-title > label {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--text-light);
-            padding-left: 5px;
-            border-left: 4px solid var(--primary-color);
-        }
+        #header h1 { color: var(--primary-color); font-weight: 700; text-shadow: 0 0 10px rgba(255, 71, 87, 0.5); }
+        #header p { color: var(--text-dark); }
+        .btn { font-weight: 500; font-size: 1rem; padding: 12px; border-radius: 12px; border: none; transition: all 0.3s ease; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); }
+        .group-title > label { font-size: 1.1rem; font-weight: 500; color: var(--text-light); padding-left: 5px; border-left: 4px solid var(--primary-color); }
 
         /* --- DANH SÁCH SẢN PHẨM --- */
-        #slider {
-            padding: 5px;
-        }
+        #slider { padding: 5px; }
+        .app-list { list-style: none; padding: 0; margin: 0; }
+        .app-list li { display: flex; align-items: center; background-color: var(--surface-dark); padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid var(--border-color); transition: all 0.3s ease; }
+        .app-list li:hover { transform: scale(1.03); border-color: var(--primary-color); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); }
+        .app-icon { flex-shrink: 0; }
+        .app-icon img { width: 60px; height: 60px; border-radius: 15px; object-fit: cover; }
+        .app-meta { flex-grow: 1; margin-left: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .app-title strong { color: var(--text-light); font-weight: 500; }
+        .download-btn { background-color: var(--primary-color); color: white !important; padding: 8px 18px; border-radius: 8px; text-decoration: none !important; font-weight: 500; white-space: nowrap; transition: background-color 0.3s ease; }
+        .download-btn:hover { background-color: #e8414f; }
+
+        /* --- FOOTER - THANH CÔNG CỤ --- */
+        .toolbar-bottom { background-color: var(--surface-dark); border-top: 1px solid var(--border-color); box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3); position: fixed; bottom: 0; left: 0; width: 100%; z-index: 100; }
+        .toolbar-inner { display: flex; justify-content: space-around; align-items: center; height: 60px; }
+        .toolbar-inner .link { flex: 1; text-align: center; color: var(--text-dark); transition: color 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; }
+        .toolbar-inner .link:hover { color: var(--text-light); }
+        .toolbar-inner .link.active { color: var(--primary-color); font-weight: 500; }
+        .toolbar-inner .link i { font-size: 20px; }
+        .icon-name { font-size: 0.75rem; }
+
+        /* --- POPUP MODAL CSS --- */
+        #welcome-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 15px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        #welcome-modal-overlay.show { opacity: 1; pointer-events: auto; }
+        #welcome-modal-content { background-color: var(--modal-bg); padding: 30px 25px; border-radius: 16px; max-width: 500px; width: 100%; text-align: center; border: 1px solid var(--border-color); transform: scale(0.95); transition: transform 0.3s ease; }
+        #welcome-modal-overlay.show #welcome-modal-content { transform: scale(1); }
+        .modal-icon { width: 70px; height: 70px; border: 4px solid rgba(108, 255, 126, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; }
+        .modal-icon svg { width: 32px; height: 32px; stroke: #6cff7e; stroke-width: 5; }
+        .modal-title { font-size: 1.5rem; font-weight: 700; color: var(--lime-green); margin-bottom: 25px; text-shadow: 0 0 8px rgba(207, 255, 4, 0.4); }
+        .modal-text { color: var(--text-light); line-height: 1.7; font-size: 0.95rem; margin-bottom: 15px; }
+        .modal-text.note { color: var(--text-dark); }
+        .modal-text a { color: var(--primary-color); font-weight: bold; text-decoration: underline; }
+        .modal-text a:hover { color: #ff6b81; }
+        .modal-btn { display: block; width: 100%; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease; cursor: pointer; border: none; text-transform: uppercase; }
+        .modal-btn.primary { background-color: var(--lime-green); color: #1a1a1a; margin-bottom: 12px; }
+        .modal-btn.primary:hover { background-color: #b8e203; transform: translateY(-2px); }
+        .modal-btn.secondary { background-color: rgba(255, 255, 255, 0.1); color: var(--text-dark); }
+        .modal-btn.secondary:hover { background-color: rgba(255, 255, 255, 0.15); color: var(--text-light); }
         
-        .app-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .app-list li {
-            display: flex;
-            align-items: center;
-            background-color: var(--surface-dark);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-        
-        .app-list li:hover {
-            transform: scale(1.03);
-            border-color: var(--primary-color);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .app-icon {
-            flex-shrink: 0;
-        }
-
-        .app-icon img {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            object-fit: cover;
-        }
-
-        .app-meta {
-            flex-grow: 1;
-            margin-left: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .app-title strong {
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .download-btn {
-            background-color: var(--primary-color);
-            color: white !important;
-            padding: 8px 18px;
-            border-radius: 8px;
-            text-decoration: none !important;
-            font-weight: 500;
-            white-space: nowrap;
-            transition: background-color 0.3s ease;
-        }
-        
-        .download-btn:hover {
-            background-color: #e8414f;
-        }
-
-        /* --- FOOTER - THANH CÔNG CỤ (ĐÃ SỬA) --- */
-        .toolbar-bottom {
-            background-color: var(--surface-dark);
-            border-top: 1px solid var(--border-color);
-            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
-            position: fixed; /* Ghim footer ở dưới cùng */
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-        }
-
-        .toolbar-inner {
-            display: flex; /* <-- THÊM DÒNG NÀY ĐỂ SẮP XẾP CÁC MỤC THEO HÀNG NGANG */
-            justify-content: space-around; /* Phân bố đều không gian */
-            align-items: center;
-            height: 60px; /* Tăng chiều cao một chút */
-        }
-        
-        .toolbar-inner .link {
-            flex: 1; /* Mỗi mục chiếm không gian bằng nhau */
-            text-align: center; /* Căn giữa nội dung của từng mục */
+        /* --- COPYRIGHT FOOTER CSS (ĐÃ THÊM) --- */
+        .copyright-footer {
+            text-align: center;
+            padding: 20px 15px;
+            font-size: 0.85rem;
             color: var(--text-dark);
-            transition: color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            text-decoration: none;
         }
-        
-        .toolbar-inner .link:hover {
-            color: var(--text-light);
-        }
-        
-        .toolbar-inner .link.active {
-            color: var(--primary-color);
-            font-weight: 500;
-        }
-        
-        .toolbar-inner .link i {
-            font-size: 20px;
-        }
-        
-        .icon-name {
-            font-size: 0.75rem;
-        }
-
     </style>
 </head>
 
 <body>
+
+    <!-- POPUP MODAL HTML -->
+    <div id="welcome-modal-overlay">
+        <div id="welcome-modal-content">
+            <div class="modal-icon"><svg viewBox="0 0 52 52"><path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+            <h2 class="modal-title">🚨 HỆ THỐNG</h2>
+            <p class="modal-text">🔒 Vui lòng <a href="#">đăng nhập</a> để sử dụng dịch vụ.</p>
+            <p class="modal-text note">🛠️ Hiện chỉ có bản PUBG Luxury 3.9, PUBG XHK 3.9 và Liên Quân ESP Chấp Tố V2 1.59, các bản khác chưa có cập nhật. Vui lòng không liên hệ admin nếu chưa mua key – admin chỉ hỗ trợ cài đặt sau khi mua key thành công.</p>
+            <a href="https://zalo.me/g/vqknoo685" target="_blank" class="modal-btn primary">🚀 Tham Gia Nhóm</a>
+            <button id="close-modal-btn" class="modal-btn secondary">❌ Đóng Thông Báo</button>
+        </div>
+    </div>
+
     <div id="app">
         <div class="container" id="content">
+            <!-- NỘI DUNG CHÍNH -->
             <div id="header">
-                <!-- KHU VỰC LIÊN HỆ CHÍNH -->
-                <div class="group-title">
+                 <!-- Khu vực liên hệ -->
+                 <div class="group-title">
                     <div style="text-align: center;">
                         <h1 style="font-size: 2.2rem; margin-bottom: 10px;">DQK CHEAT STORE</h1>
                         <p style="margin-bottom: 25px;">Uy tín - Chất lượng - Hỗ trợ 24/7</p>
                     </div>
-                    
-                    <!-- SỬA LẠI LINK ZALO VÀ TELEGRAM CỦA BẠN Ở ĐÂY -->
-                    <a class="btn w-100 mb-3" href="https://zalo.me/g/vqknoo685" target="_blank" style="background: linear-gradient(45deg, #0068ff, #00b8ff); color: white;">
-                        <i class="fab fa-rocketchat" style="margin-right: 10px;"></i> GROUP ZALO CHEAT DQK
-                    </a>
-                    <a class="btn w-100 mb-3" href="https://t.me/xhkteamgroup" target="_blank" style="background: linear-gradient(45deg, #0088cc, #00a0e0); color: white;">
-                        <i class="fab fa-telegram-plane" style="margin-right: 10px;"></i> GROUP TELEGRAM
-                    </a>
+                    <a class="btn w-100 mb-3" href="https://zalo.me/g/vqknoo685" target="_blank" style="background: linear-gradient(45deg, #0068ff, #00b8ff); color: white;"><i class="fab fa-rocketchat" style="margin-right: 10px;"></i> GROUP ZALO CHEAT DQK</a>
+                    <a class="btn w-100 mb-3" href="https://t.me/xhkteamgroup" target="_blank" style="background: linear-gradient(45deg, #0088cc, #00a0e0); color: white;"><i class="fab fa-telegram-plane" style="margin-right: 10px;"></i> GROUP TELEGRAM</a>
                 </div>
-
-                <!-- DANH MỤC SẢN PHẨM -->
+                <!-- Danh mục sản phẩm -->
                 <div class="group-title" style="background: none; border: none; box-shadow: none; padding: 0 10px 10px 10px;">
-                    <div class="row">
-                        <div class="col-12">
-                            <label for="">DANH MỤC SẢN PHẨM</label>
-                        </div>
-                    </div>
+                    <div class="row"><div class="col-12"><label>DANH MỤC SẢN PHẨM</label></div></div>
                 </div>
                 <div id="slider">
-                    <div class="swiper">
-                        <div class="swiper-wrapper">
-                            <!-- CHỈ CÓ MỘT SLIDE DUY NHẤT HIỂN THỊ CÁC SẢN PHẨM -->
-                            <div class="swiper-slide">
-                                <ul class="app-list">
-                                    
-                                    <!-- SẢN PHẨM 1: LIÊN QUÂN -->
-                                    <li>
-                                        <div class="app-icon">
-                                            <img src="https://i.imgur.com/zQUL66p.png" class="lazy" alt="LIÊN QUÂN CHỐNG TỐ VIP">
-                                        </div>
-                                        <div class="app-meta">
-                                            <div class="app-title"><strong>LIÊN QUÂN CHỐNG TỐ CÁO VIP</strong></div>
-                                            <!-- SỬA LẠI LINK MUA HÀNG -->
-                                            <a href="https://zalo.me/0984735098" class="download-btn">Mua Ngay</a>
-                                        </div>
-                                    </li>
-
-                                    <!-- SẢN PHẨM 2: PUBG MOBILE -->
-                                    <li>
-                                        <div class="app-icon">
-                                            <img src="https://i.imgur.com/jmppgj3.jpeg" class="lazy" alt="PUBG Mobile Antiban 99%">
-                                        </div>
-                                        <div class="app-meta">
-                                            <div class="app-title"><strong>PUBG Mobile Antiban 99%</strong></div>
-                                            <!-- SỬA LẠI LINK MUA HÀNG -->
-                                            <a href="https://zalo.me/0984735098" class="download-btn">Mua Ngay</a>
-                                        </div>
-                                    </li>
-
-                                    <!-- BẠN CÓ THỂ THÊM SẢN PHẨM KHÁC Ở ĐÂY -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="swiper"><div class="swiper-wrapper"><div class="swiper-slide">
+                        <ul class="app-list">
+                            <li>
+                                <div class="app-icon"><img src="https://i.imgur.com/zQUL66p.png" class="lazy" alt="LIÊN QUÂN CHỐNG TỐ VIP"></div>
+                                <div class="app-meta">
+                                    <div class="app-title"><strong>LIÊN QUÂN CHỐNG TỐ VIP</strong></div>
+                                    <a href="https://zalo.me/0984735098" class="download-btn">Mua Ngay</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="app-icon"><img src="https://i.imgur.com/jmppgj3.jpeg" class="lazy" alt="PUBG Mobile Antiban 99%"></div>
+                                <div class="app-meta">
+                                    <div class="app-title"><strong>PUBG Mobile Antiban 99%</strong></div>
+                                    <a href="https://zalo.me/0984735098" class="download-btn">Mua Ngay</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div></div></div>
                 </div>
             </div>
         </div>
 
-        <!-- CHÂN TRANG - FOOTER (ĐÃ SỬA) -->
-        <div class="toolbar toolbar-bottom">
-            <div class="toolbar-inner">
-                <a href="#" class="link active">
-                    <i class="fas fa-home"></i>
-                    <span class="icon-name">Trang Chủ</span>
-                </a>
-                <a href="https://zalo.me/0984735098" class="link">
-                    <i class="fas fa-headset"></i>
-                    <span class="icon-name">Hỗ Trợ</span>
-                </a>
-            </div>
+        <!-- === COPYRIGHT FOOTER HTML (ĐÃ THÊM) === -->
+        <footer class="copyright-footer">
+            <p>© <span id="copyright-year"></span> Copyright by DQK</p>
+        </footer>
+
+    </div>
+
+    <!-- THANH CÔNG CỤ CỐ ĐỊNH -->
+    <div class="toolbar toolbar-bottom">
+        <div class="toolbar-inner">
+            <a href="#" class="link active"><i class="fas fa-home"></i><span class="icon-name">Trang Chủ</span></a>
+            <a href="https://zalo.me/0984735098" class="link"><i class="fas fa-headset"></i><span class="icon-name">Hỗ Trợ</span></a>
         </div>
     </div>
 
-    <!-- CÁC FILE JS ĐỂ CHẠY GIAO DIỆN (GIỮ NGUYÊN) -->
+    <!-- CÁC FILE JS -->
     <script src="asset/jquery.min.js"></script>
     <script src="asset/js/swiper.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            new Swiper('.swiper', {
-                loop: false,
-                slidesPerView: 1,
-                spaceBetween: 10,
-            });
+            // Khởi tạo slider
+            new Swiper('.swiper', { loop: false, slidesPerView: 1, spaceBetween: 10 });
+
+            // Javascript cho Popup Modal
+            const modalOverlay = document.getElementById('welcome-modal-overlay');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            function showModal() { if (modalOverlay) modalOverlay.classList.add('show'); }
+            function closeModal() { if (modalOverlay) modalOverlay.classList.remove('show'); }
+            setTimeout(showModal, 1000);
+            if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+            if (modalOverlay) {
+                modalOverlay.addEventListener('click', function(event) {
+                    if (event.target === modalOverlay) closeModal();
+                });
+            }
+
+            // --- JAVASCRIPT ĐỂ TỰ ĐỘNG CẬP NHẬT NĂM (ĐÃ THÊM) ---
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
         });
     </script>
 </body>
