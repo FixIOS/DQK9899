@@ -13,7 +13,6 @@
     <meta property="og:type" content="website">
 
     <link media="all" type="text/css" rel="stylesheet" href="css/swiper.min.css">
-    <!-- << SỬA 1: DÙNG LINK CDN CHO BOOTSTRAP ĐỂ ĐẢM BẢO LUÔN CHẠY ĐÚNG >> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -25,7 +24,7 @@
         :root {
             --background-dark: #121212;
             --surface-dark: #1e1e1e;
-            --primary-color: #ff4757;
+            --primary-color: #ff4757; /* <-- Màu hồng này sẽ được dùng cho hạt */
             --text-light: #e0e0e0;
             --text-dark: #b3b3b3;
             --border-color: #333;
@@ -39,15 +38,26 @@
             font-family: 'Poppins', sans-serif;
         }
         
-        #app {
-            padding-bottom: 110px; 
+        /* << THÊM MỚI 1: CSS CHO KHUNG NỀN HIỆU ỨNG >> */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Đặt nền hiệu ứng ra sau cùng */
         }
 
-        /* << SỬA 2: SỬA LẠI CSS CĂN GIỮA MỘT CÁCH CHẮC CHẮN >> */
+        #app {
+            padding-bottom: 110px; 
+            position: relative; /* Cần để nội dung nổi lên trên nền */
+            z-index: 1;
+        }
+
         #content.container {
-            max-width: 1140px; /* Giới hạn chiều rộng tối đa trên PC */
-            margin-left: auto;  /* Tự động căn lề trái */
-            margin-right: auto; /* Tự động căn lề phải */
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
             padding-top: 15px;
             background-color: transparent;
         }
@@ -98,43 +108,21 @@
             border-top: 1px solid var(--border-color);
         }
         
-        /* Code căn giữa footer đã đúng, giữ nguyên */
-        .toolbar-inner {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            height: 60px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .toolbar-inner .link {
-            text-align: center;
-            color: var(--text-dark);
-            transition: color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            text-decoration: none;
-        }
-
+        .toolbar-inner { display: flex; justify-content: center; gap: 80px; height: 60px; border-bottom: 1px solid var(--border-color); }
+        .toolbar-inner .link { text-align: center; color: var(--text-dark); transition: color 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; }
         .toolbar-inner .link:hover { color: var(--text-light); }
         .toolbar-inner .link.active { color: var(--primary-color); font-weight: 500; }
         .toolbar-inner .link i { font-size: 20px; }
         .icon-name { font-size: 0.75rem; }
 
-        .copyright-text {
-            text-align: center;
-            padding: 10px 15px;
-            font-size: 0.8rem;
-            color: var(--text-dark);
-            background-color: var(--background-dark);
-        }
+        .copyright-text { text-align: center; padding: 10px 15px; font-size: 0.8rem; color: var(--text-dark); background-color: var(--background-dark); }
     </style>
 </head>
 
 <body>
+
+    <!-- << THÊM MỚI 2: KHUNG NỀN CHO HIỆU ỨNG >> -->
+    <div id="particles-js"></div>
 
     <!-- POPUP MODAL -->
     <div id="welcome-modal-overlay">
@@ -207,14 +195,12 @@
         </div>
     </div>
 
-    <!-- === FOOTER CỐ ĐỊNH (ĐÃ GỘP) === -->
+    <!-- FOOTER -->
     <footer id="page-footer">
-        <!-- Phần thanh công cụ ở trên -->
         <div class="toolbar-inner">
             <a href="#" class="link active"><i class="fas fa-home"></i><span class="icon-name">Trang Chủ</span></a>
             <a href="https://zalo.me/0984735098" class="link"><i class="fas fa-headset"></i><span class="icon-name">Hỗ Trợ</span></a>
         </div>
-        <!-- Phần copyright ở dưới -->
         <div class="copyright-text">
             © <span id="copyright-year"></span> Copyright by DQK
         </div>
@@ -223,12 +209,52 @@
     <!-- CÁC FILE JS -->
     <script src="asset/jquery.min.js"></script>
     <script src="asset/js/swiper.min.js"></script>
+    
+    <!-- << THÊM MỚI 3: THƯ VIỆN HIỆU ỨNG VÀ MÃ KHỞI TẠO >> -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Khởi tạo slider
-            new Swiper('.swiper', { loop: false, slidesPerView: 1, spaceBetween: 10 });
+        // Khởi tạo hiệu ứng hạt
+        tsParticles.load("particles-js", {
+            particles: {
+                number: {
+                    value: 80, // Số lượng hạt
+                    density: { enable: true, value_area: 800 }
+                },
+                color: {
+                    value: "#ff4757" // Màu của hạt (màu primary của bạn)
+                },
+                shape: {
+                    type: "circle"
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true
+                },
+                size: {
+                    value: { min: 1, max: 3 }, // Kích thước ngẫu nhiên
+                    random: true
+                },
+                move: {
+                    enable: true,
+                    speed: 1.5, // Tốc độ di chuyển
+                    direction: "none",
+                    out_mode: "out"
+                }
+            },
+            interactivity: {
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse" // Hiệu ứng khi di chuột vào: đẩy hạt ra xa
+                    }
+                }
+            },
+            detectRetina: true
+        });
 
-            // Javascript cho Popup Modal
+        // Code cũ của bạn
+        document.addEventListener('DOMContentLoaded', function() {
+            new Swiper('.swiper', { loop: false, slidesPerView: 1, spaceBetween: 10 });
             const modalOverlay = document.getElementById('welcome-modal-overlay');
             const closeModalBtn = document.getElementById('close-modal-btn');
             function showModal() { if (modalOverlay) modalOverlay.classList.add('show'); }
@@ -240,8 +266,6 @@
                     if (event.target === modalOverlay) closeModal();
                 });
             }
-
-            // Tự động cập nhật năm
             document.getElementById('copyright-year').textContent = new Date().getFullYear();
         });
     </script>
