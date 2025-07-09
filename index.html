@@ -37,12 +37,18 @@
             font-family: 'Poppins', sans-serif;
         }
         
-        /* Chừa khoảng trống lớn hơn ở dưới cho footer mới */
         #app {
             padding-bottom: 110px; 
         }
 
         #content { background-color: transparent; padding-top: 15px; }
+
+        /* << SỬA 1: THÊM CSS ĐỂ CĂN GIỮA KHỐI NỘI DUNG CHÍNH */
+        #content.container {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* KẾT THÚC SỬA 1 */
 
         #header .group-title { background-color: var(--surface-dark); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
         #header h1 { color: var(--primary-color); font-weight: 700; text-shadow: 0 0 10px rgba(255, 71, 87, 0.5); }
@@ -79,7 +85,6 @@
         .modal-btn.secondary { background-color: rgba(255, 255, 255, 0.1); color: var(--text-dark); }
         .modal-btn.secondary:hover { background-color: rgba(255, 255, 255, 0.15); color: var(--text-light); }
         
-        /* === FOOTER ĐÃ SỬA LẠI HOÀN TOÀN === */
         #page-footer {
             position: fixed;
             bottom: 0;
@@ -91,14 +96,17 @@
             border-top: 1px solid var(--border-color);
         }
         
+        /* << SỬA 2: CHỈNH LẠI CSS CHO FOOTER ĐỂ CĂN GIỮA */
         .toolbar-inner {
             display: flex;
+            justify-content: center; /* <-- THÊM VÀO ĐỂ CĂN GIỮA */
+            gap: 80px;               /* <-- THÊM VÀO ĐỂ TẠO KHOẢNG CÁCH */
             height: 60px;
-            border-bottom: 1px solid var(--border-color); /* Thêm đường kẻ ngăn cách */
+            border-bottom: 1px solid var(--border-color);
         }
 
         .toolbar-inner .link {
-            flex: 1;
+            /* flex: 1; <<-- BỎ THUỘC TÍNH NÀY ĐI */
             text-align: center;
             color: var(--text-dark);
             transition: color 0.3s ease;
@@ -109,6 +117,7 @@
             gap: 4px;
             text-decoration: none;
         }
+        /* KẾT THÚC SỬA 2 */
 
         .toolbar-inner .link:hover { color: var(--text-light); }
         .toolbar-inner .link.active { color: var(--primary-color); font-weight: 500; }
@@ -120,7 +129,7 @@
             padding: 10px 15px;
             font-size: 0.8rem;
             color: var(--text-dark);
-            background-color: var(--background-dark); /* Màu nền hơi khác để phân biệt */
+            background-color: var(--background-dark);
         }
     </style>
 </head>
