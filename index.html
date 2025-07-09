@@ -49,7 +49,7 @@
         }
 
         #content {
-            background-color: transparent; /* Nền chính sẽ do body quản lý */
+            background-color: transparent;
             padding-top: 15px;
         }
 
@@ -66,7 +66,7 @@
         #header h1 {
             color: var(--primary-color);
             font-weight: 700;
-            text-shadow: 0 0 10px rgba(255, 71, 87, 0.5); /* Hiệu ứng tỏa sáng */
+            text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
         }
 
         #header p {
@@ -83,7 +83,7 @@
         }
 
         .btn:hover {
-            transform: translateY(-3px); /* Hiệu ứng nhấc lên khi hover */
+            transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         }
         
@@ -107,7 +107,7 @@
         }
 
         .app-list li {
-            display: flex; /* Dùng flexbox để căn chỉnh nội dung */
+            display: flex;
             align-items: center;
             background-color: var(--surface-dark);
             padding: 15px;
@@ -118,7 +118,7 @@
         }
         
         .app-list li:hover {
-            transform: scale(1.03); /* Phóng to nhẹ khi hover */
+            transform: scale(1.03);
             border-color: var(--primary-color);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
@@ -130,12 +130,12 @@
         .app-icon img {
             width: 60px;
             height: 60px;
-            border-radius: 15px; /* Bo tròn ảnh icon */
+            border-radius: 15px;
             object-fit: cover;
         }
 
         .app-meta {
-            flex-grow: 1; /* Phần meta chiếm hết không gian còn lại */
+            flex-grow: 1;
             margin-left: 15px;
             display: flex;
             justify-content: space-between;
@@ -154,7 +154,7 @@
             border-radius: 8px;
             text-decoration: none !important;
             font-weight: 500;
-            white-space: nowrap; /* Tránh nút bị xuống dòng */
+            white-space: nowrap;
             transition: background-color 0.3s ease;
         }
         
@@ -162,24 +162,36 @@
             background-color: #e8414f;
         }
 
-        /* --- FOOTER - THANH CÔNG CỤ --- */
+        /* --- FOOTER - THANH CÔNG CỤ (ĐÃ SỬA) --- */
         .toolbar-bottom {
             background-color: var(--surface-dark);
             border-top: 1px solid var(--border-color);
             box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+            position: fixed; /* Ghim footer ở dưới cùng */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
         }
 
         .toolbar-inner {
-            padding: 5px 0;
+            display: flex; /* <-- THÊM DÒNG NÀY ĐỂ SẮP XẾP CÁC MỤC THEO HÀNG NGANG */
+            justify-content: space-around; /* Phân bố đều không gian */
+            align-items: center;
+            height: 60px; /* Tăng chiều cao một chút */
         }
         
         .toolbar-inner .link {
+            flex: 1; /* Mỗi mục chiếm không gian bằng nhau */
+            text-align: center; /* Căn giữa nội dung của từng mục */
             color: var(--text-dark);
             transition: color 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px; /* Khoảng cách giữa icon và chữ */
+            justify-content: center;
+            gap: 4px;
+            text-decoration: none;
         }
         
         .toolbar-inner .link:hover {
@@ -243,7 +255,7 @@
                                             <img src="https://i.imgur.com/zQUL66p.png" class="lazy" alt="LIÊN QUÂN CHỐNG TỐ VIP">
                                         </div>
                                         <div class="app-meta">
-                                            <div class="app-title"><strong>LIÊN QUÂN CHỐNG TỐ VIP</strong></div>
+                                            <div class="app-title"><strong>LIÊN QUÂN CHỐNG TỐ CÁO VIP</strong></div>
                                             <!-- SỬA LẠI LINK MUA HÀNG -->
                                             <a href="https://zalo.me/0984735098" class="download-btn">Mua Ngay</a>
                                         </div>
@@ -262,8 +274,6 @@
                                     </li>
 
                                     <!-- BẠN CÓ THỂ THÊM SẢN PHẨM KHÁC Ở ĐÂY -->
-                                    <!-- CHỈ CẦN COPY/PASTE KHỐI <li>...</li> Ở TRÊN VÀ SỬA LẠI THÔNG TIN -->
-
                                 </ul>
                             </div>
                         </div>
@@ -272,14 +282,14 @@
             </div>
         </div>
 
-        <!-- CHÂN TRANG - FOOTER -->
+        <!-- CHÂN TRANG - FOOTER (ĐÃ SỬA) -->
         <div class="toolbar toolbar-bottom">
             <div class="toolbar-inner">
-                <a href="#" class="link active" style="flex: 1; text-align: center;">
+                <a href="#" class="link active">
                     <i class="fas fa-home"></i>
                     <span class="icon-name">Trang Chủ</span>
                 </a>
-                <a href="https://zalo.me/0984735098" class="link" style="flex: 1; text-align: center;">
+                <a href="https://zalo.me/0984735098" class="link">
                     <i class="fas fa-headset"></i>
                     <span class="icon-name">Hỗ Trợ</span>
                 </a>
@@ -291,7 +301,6 @@
     <script src="asset/jquery.min.js"></script>
     <script src="asset/js/swiper.min.js"></script>
     <script>
-        // Khởi tạo slider
         document.addEventListener('DOMContentLoaded', function() {
             new Swiper('.swiper', {
                 loop: false,
