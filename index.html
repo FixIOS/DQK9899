@@ -6,24 +6,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- SỬA THÔNG TIN SHOP CỦA BẠN Ở ĐÂY -->
     <title>DQK Cheat - Shop Hack Liên Quân & PUBG</title>
     <meta name="keywords" content="DQK Cheat, hack liên quân, hack pubg, hack game, dịch vụ game, shop hack uy tín">
     <meta property="og:title" content="DQK Cheat - Shop Hack Liên Quân & PUBG">
     <meta property="og:locale" content="vi">
     <meta property="og:type" content="website">
 
-    <!-- CÁC FILE CSS GỐC -->
     <link media="all" type="text/css" rel="stylesheet" href="css/swiper.min.css">
     <link media="all" type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!-- CÁC THƯ VIỆN BỔ SUNG -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- === PHẦN CSS TÙY CHỈNH === -->
     <style>
         :root {
             --background-dark: #121212;
@@ -36,40 +31,26 @@
             --lime-green: #cfff04;
         }
 
-        /* --- CÀI ĐẶT TỔNG THỂ & DARK MODE --- */
         body {
             background-color: var(--background-dark);
             color: var(--text-light);
             font-family: 'Poppins', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
         
+        /* Chừa khoảng trống lớn hơn ở dưới cho footer mới */
         #app {
-            padding-bottom: 80px; /* Chừa không gian cho thanh công cụ và copyright */
+            padding-bottom: 110px; 
         }
 
-        #content {
-            background-color: transparent;
-            padding-top: 15px;
-        }
+        #content { background-color: transparent; padding-top: 15px; }
 
-        /* --- HEADER & NÚT BẤM --- */
-        #header .group-title {
-            background-color: var(--surface-dark);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
+        #header .group-title { background-color: var(--surface-dark); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
         #header h1 { color: var(--primary-color); font-weight: 700; text-shadow: 0 0 10px rgba(255, 71, 87, 0.5); }
         #header p { color: var(--text-dark); }
         .btn { font-weight: 500; font-size: 1rem; padding: 12px; border-radius: 12px; border: none; transition: all 0.3s ease; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); }
         .group-title > label { font-size: 1.1rem; font-weight: 500; color: var(--text-light); padding-left: 5px; border-left: 4px solid var(--primary-color); }
-
-        /* --- DANH SÁCH SẢN PHẨM --- */
+        
         #slider { padding: 5px; }
         .app-list { list-style: none; padding: 0; margin: 0; }
         .app-list li { display: flex; align-items: center; background-color: var(--surface-dark); padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid var(--border-color); transition: all 0.3s ease; }
@@ -81,16 +62,6 @@
         .download-btn { background-color: var(--primary-color); color: white !important; padding: 8px 18px; border-radius: 8px; text-decoration: none !important; font-weight: 500; white-space: nowrap; transition: background-color 0.3s ease; }
         .download-btn:hover { background-color: #e8414f; }
 
-        /* --- FOOTER - THANH CÔNG CỤ --- */
-        .toolbar-bottom { background-color: var(--surface-dark); border-top: 1px solid var(--border-color); box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3); position: fixed; bottom: 0; left: 0; width: 100%; z-index: 100; }
-        .toolbar-inner { display: flex; justify-content: space-around; align-items: center; height: 60px; }
-        .toolbar-inner .link { flex: 1; text-align: center; color: var(--text-dark); transition: color 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; }
-        .toolbar-inner .link:hover { color: var(--text-light); }
-        .toolbar-inner .link.active { color: var(--primary-color); font-weight: 500; }
-        .toolbar-inner .link i { font-size: 20px; }
-        .icon-name { font-size: 0.75rem; }
-
-        /* --- POPUP MODAL CSS --- */
         #welcome-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 15px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         #welcome-modal-overlay.show { opacity: 1; pointer-events: auto; }
         #welcome-modal-content { background-color: var(--modal-bg); padding: 30px 25px; border-radius: 16px; max-width: 500px; width: 100%; text-align: center; border: 1px solid var(--border-color); transform: scale(0.95); transition: transform 0.3s ease; }
@@ -108,19 +79,55 @@
         .modal-btn.secondary { background-color: rgba(255, 255, 255, 0.1); color: var(--text-dark); }
         .modal-btn.secondary:hover { background-color: rgba(255, 255, 255, 0.15); color: var(--text-light); }
         
-        /* --- COPYRIGHT FOOTER CSS (ĐÃ THÊM) --- */
-        .copyright-footer {
+        /* === FOOTER ĐÃ SỬA LẠI HOÀN TOÀN === */
+        #page-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: var(--surface-dark);
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .toolbar-inner {
+            display: flex;
+            height: 60px;
+            border-bottom: 1px solid var(--border-color); /* Thêm đường kẻ ngăn cách */
+        }
+
+        .toolbar-inner .link {
+            flex: 1;
             text-align: center;
-            padding: 20px 15px;
-            font-size: 0.85rem;
             color: var(--text-dark);
+            transition: color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            text-decoration: none;
+        }
+
+        .toolbar-inner .link:hover { color: var(--text-light); }
+        .toolbar-inner .link.active { color: var(--primary-color); font-weight: 500; }
+        .toolbar-inner .link i { font-size: 20px; }
+        .icon-name { font-size: 0.75rem; }
+
+        .copyright-text {
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 0.8rem;
+            color: var(--text-dark);
+            background-color: var(--background-dark); /* Màu nền hơi khác để phân biệt */
         }
     </style>
 </head>
 
 <body>
 
-    <!-- POPUP MODAL HTML -->
+    <!-- POPUP MODAL -->
     <div id="welcome-modal-overlay">
         <div id="welcome-modal-content">
             <div class="modal-icon"><svg viewBox="0 0 52 52"><path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
@@ -136,7 +143,6 @@
         <div class="container" id="content">
             <!-- NỘI DUNG CHÍNH -->
             <div id="header">
-                 <!-- Khu vực liên hệ -->
                  <div class="group-title">
                     <div style="text-align: center;">
                         <h1 style="font-size: 2.2rem; margin-bottom: 10px;">DQK CHEAT STORE</h1>
@@ -145,7 +151,6 @@
                     <a class="btn w-100 mb-3" href="https://zalo.me/g/vqknoo685" target="_blank" style="background: linear-gradient(45deg, #0068ff, #00b8ff); color: white;"><i class="fab fa-rocketchat" style="margin-right: 10px;"></i> GROUP ZALO CHEAT DQK</a>
                     <a class="btn w-100 mb-3" href="https://t.me/xhkteamgroup" target="_blank" style="background: linear-gradient(45deg, #0088cc, #00a0e0); color: white;"><i class="fab fa-telegram-plane" style="margin-right: 10px;"></i> GROUP TELEGRAM</a>
                 </div>
-                <!-- Danh mục sản phẩm -->
                 <div class="group-title" style="background: none; border: none; box-shadow: none; padding: 0 10px 10px 10px;">
                     <div class="row"><div class="col-12"><label>DANH MỤC SẢN PHẨM</label></div></div>
                 </div>
@@ -155,7 +160,7 @@
                             <li>
                                 <div class="app-icon"><img src="https://i.imgur.com/zQUL66p.png" class="lazy" alt="LIÊN QUÂN CHỐNG TỐ VIP"></div>
                                 <div class="app-meta">
-                                    <div class="app-title"><strong>LIÊN QUÂN CHỐNG TỐ VIP</strong></div>
+                                    <div class="app-title"><strong>Liên Quân Antiban 99%</strong></div>
                                     <a href="https://zalo.me/0984735098" class="download-btn">Mua Ngay</a>
                                 </div>
                             </li>
@@ -171,21 +176,20 @@
                 </div>
             </div>
         </div>
-
-        <!-- === COPYRIGHT FOOTER HTML (ĐÃ THÊM) === -->
-        <footer class="copyright-footer">
-            <p>© <span id="copyright-year"></span> Copyright by DQK</p>
-        </footer>
-
     </div>
 
-    <!-- THANH CÔNG CỤ CỐ ĐỊNH -->
-    <div class="toolbar toolbar-bottom">
+    <!-- === FOOTER CỐ ĐỊNH (ĐÃ GỘP) === -->
+    <footer id="page-footer">
+        <!-- Phần thanh công cụ ở trên -->
         <div class="toolbar-inner">
             <a href="#" class="link active"><i class="fas fa-home"></i><span class="icon-name">Trang Chủ</span></a>
             <a href="https://zalo.me/0984735098" class="link"><i class="fas fa-headset"></i><span class="icon-name">Hỗ Trợ</span></a>
         </div>
-    </div>
+        <!-- Phần copyright ở dưới -->
+        <div class="copyright-text">
+            © <span id="copyright-year"></span> Copyright by DQK
+        </div>
+    </footer>
 
     <!-- CÁC FILE JS -->
     <script src="asset/jquery.min.js"></script>
@@ -208,7 +212,7 @@
                 });
             }
 
-            // --- JAVASCRIPT ĐỂ TỰ ĐỘNG CẬP NHẬT NĂM (ĐÃ THÊM) ---
+            // Tự động cập nhật năm
             document.getElementById('copyright-year').textContent = new Date().getFullYear();
         });
     </script>
